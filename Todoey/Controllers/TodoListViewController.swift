@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import CoreData
+
 
 class TodoListViewController: UITableViewController {
 
+    
     var itemArray = [Item]()
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+
 //    let defaults = UserDefaults.standard
     
     
@@ -20,8 +25,9 @@ class TodoListViewController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
        
 
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
-        print(dataFilePath!)
+//        print(dataFilePath!)
         
 //        let newItem = Item()
 //        newItem.title = "Find Mike"
@@ -39,6 +45,8 @@ class TodoListViewController: UITableViewController {
 //       if let items = defaults.array(forKey: "TodoListArray") as? [Item] {
 //            itemArray = items
 //        }
+        
+        
         
         loadItems()
         
@@ -87,9 +95,16 @@ class TodoListViewController: UITableViewController {
 //        } else {
 //            itemArray[indexPath.row].done = false
 //        }
+
         
-        itemArray[indexPath.row].done = !itemArray[indexPath.row].done
+//        Tartib Mohem Ast !!!
+//        context.delete(itemArray[indexPath.row])
+//        itemArray.remove(at: indexPath.row)
+       
         
+//        itemArray[indexPath.row].done = !itemArray[indexPath.row].done
+//or     itemArray[indexPath.row].done.setValue("Completed", forKey: "title")
+
         saveItems()
         
 //        tableView.reloadData()
@@ -114,8 +129,11 @@ class TodoListViewController: UITableViewController {
         
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             //What will happen once the user clicks the Add item button on our UIAlert
-            let newItem = Item()
+            
+            let newItem = Item(context: self.context)
+            
             newItem.title = textField.text!
+            newItem.done = false
             
             self.itemArray.append(newItem)
             
@@ -148,32 +166,46 @@ class TodoListViewController: UITableViewController {
     
     func saveItems () {
         
-        let encoder = PropertyListEncoder()
+//        let encoder = PropertyListEncoder()
         
         do {
-            let data = try encoder.encode(itemArray)
-            try data.write(to: dataFilePath!)
+//            let data = try encoder.encode(itemArray)
+//            try data.write(to: dataFilePath!)
+
+            try context.save()
+            
         } catch {
-            print("Error encoding item array, \(error)")
-        
+//            print("Error encoding item array, \(error)")
+              print("Error saving context \(error)")
     }
     
       self.tableView.reloadData()
 }
 
     func loadItems() {
+//
+//         if let data = try? Data(contentsOf: dataFilePath!) {
+//            let decoder = PropertyListDecoder()
+//            do {
+//               itemArray = try decoder.decode([Item].self, from: data)
+//            } catch {
+//
+//            print("Error decoding item array, \(error)")
+//            }
+//
+//        }
         
-         if let data = try? Data(contentsOf: dataFilePath!) {
-            let decoder = PropertyListDecoder()
-            do {
-               itemArray = try decoder.decode([Item].self, from: data)
-            } catch {
-                
-            print("Error decoding item array, \(error)")
-            }
-            
+        let request : NSFetchRequest<Item> = Item.fetchRequest()
+        do {
+            itemArray = try context.fetch(request)
+        } catch {
+            print("Error fetching data from context \(error)")
         }
+        
+        
     }
+    
+    
 
     
 }
