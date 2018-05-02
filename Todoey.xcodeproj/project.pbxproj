@@ -14,6 +14,7 @@
 		A849C1CF1FF6721600FE49CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A849C1CD1FF6721600FE49CE /* LaunchScreen.storyboard */; };
 		A849C1D71FF76F6800FE49CE /* Old-Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A849C1D61FF76F6800FE49CE /* Old-Item.swift */; };
 		A849C1FF1FF9D84F00FE49CE /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A849C1FD1FF9D84F00FE49CE /* DataModel.xcdatamodeld */; };
+		A89B38ED20557A320070B029 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89B38EC20557A320070B029 /* CategoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		A849C1D01FF6721600FE49CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A849C1D61FF76F6800FE49CE /* Old-Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Old-Item.swift"; sourceTree = "<group>"; };
 		A849C1FE1FF9D84F00FE49CE /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		A89B38EC20557A320070B029 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		A849C1D91FF76FA500FE49CE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A89B38EC20557A320070B029 /* CategoryViewController.swift */,
 				A849C1C61FF6721600FE49CE /* TodoListViewController.swift */,
 			);
 			path = Controllers;
@@ -174,6 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A89B38ED20557A320070B029 /* CategoryViewController.swift in Sources */,
 				A849C1C71FF6721600FE49CE /* TodoListViewController.swift in Sources */,
 				A849C1FF1FF9D84F00FE49CE /* DataModel.xcdatamodeld in Sources */,
 				A849C1D71FF76F6800FE49CE /* Old-Item.swift in Sources */,
